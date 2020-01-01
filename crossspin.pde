@@ -1,0 +1,55 @@
+void setup() {
+  size(400, 400);
+  noStroke();
+  pixelDensity(1);
+}
+int t = 0;
+void draw() {
+  
+  if (t % 200 > 100) {
+    background(255);
+    fill(0);
+    drawall(-50, -50, TAU*t/400);
+  } else {
+    background(0);
+    fill(255);
+    drawall(-130, -90, -TAU*t/400);
+  }
+  t++;
+  saveFrame();
+  if (t == 200){
+    noLoop();
+  }
+  
+  
+  
+}
+void drawCross(float x, float y, float a) {
+  if (x-135 < width&&x + 135 > 0) {
+    if (y-135 < height&&y + 135 > 0) {
+      translate(x, y);
+      rotate(a);
+      rect(-20, -60, 40, 120);
+      rect(-60, -20, 120, 40);
+      rotate(-a);
+      translate(-x, -y);
+    }
+  }
+}
+void drawall(float x_, float y_, float a) {
+  float xt = x_;
+  float yt = y_;
+  float x = x_;
+  float y = y_;
+  for (int i = 0; i < 13; i++) {
+    for (int j = 0; j < 13; j++) {
+      drawCross(x, y, a);
+      x += 120;
+      y -= 40;
+    }
+    xt -= 80;
+    yt += 160;
+    x = xt;
+    y = yt;
+  }
+}
