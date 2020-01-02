@@ -16,10 +16,6 @@ void draw() {
     drawall(-130, -90, -TAU*t/400);
   }
   t++;
-  saveFrame();
-  if (t == 200){
-    noLoop();
-  }
   
   
   
@@ -41,12 +37,15 @@ void drawall(float x_, float y_, float a) {
   float yt = y_;
   float x = x_;
   float y = y_;
-  for (int i = 0; i < 13; i++) {
-    for (int j = 0; j < 13; j++) {
-      drawCross(x, y, a);
+  int d = -1;
+  for (int i = 0; i < 6; i++) {
+    for (int j = 0; j < 9; j++) {
+      drawCross(x, y, d*a);
       x += 120;
       y -= 40;
+      d = -d;
     }
+    d = -d;
     xt -= 80;
     yt += 160;
     x = xt;
